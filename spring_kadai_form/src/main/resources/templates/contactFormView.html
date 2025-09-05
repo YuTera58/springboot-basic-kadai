@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>【課題】お問い合わせフォームを作ろう</title>
+	</head>
+	
+	<body>
+	    <h2>お問い合わせフォーム</h2>
+	    <form th:action="@{/form}" method="post" th:object="${contactForm}">
+	        <label for="name">お名前</label>
+	        <input type="text" th:field="*{name}">
+	        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></div>
+	        <br>
+	
+	        <label for="email">メールアドレス</label>
+	        <input type="text" th:field="*{email}">
+	        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red;"></div>
+	        <br>
+	        
+	        <label for="message">お問い合わせ内容</label>
+        	<textarea th:field="*{message}" style="vertical-align: top" cols="30" rows="10"></textarea>
+        	<div th:if="${#fields.hasErrors('message')}" th:errors="*{message}" style="color: red;"></div>
+        	<br>
+	        
+			<input type="submit" value="送信">
+	    </form>
+	</body>
+</html>
