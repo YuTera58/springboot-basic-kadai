@@ -28,12 +28,12 @@ public class ContactFormController {
     }
     
     /**
-     * @ModelAttribute ・入力チェックとは直接関係ないが、画面の情報を Form が受け取るために指定
-	 * @Validated・・・・こちらを指定することでPOST時に自動的に入力チェックが実行されます。
+     * @ModelAttribute ・入力チェックとは直接関係ないが、画面の情報を Form が受け取るために指定。
+	 * @Validated・・・・これを指定することで POST 時に自動的に入力チェックが実行される。
 	 * BindingResult・・・入力チェック結果はこの変数に格納される。
 	 * 　　　　　　　　　 必ず Form ⇒ BindingResult の順で引数を指定する事。
      */
-    @PostMapping("/form")
+    @PostMapping("/confirm")
     public String ValidateForm(Model model, RedirectAttributes redirectAttributes,
             @ModelAttribute @Validated ContactForm form, BindingResult result) {
 
@@ -55,6 +55,7 @@ public class ContactFormController {
         form.setMessage(s.replace("\n", "<br>"));
         // ビューに model を使って入力内容を渡す
         model.addAttribute("contactForm", form);
+        
         //バリデーション OK の場合のビュー
         return "confirmView";
     }
