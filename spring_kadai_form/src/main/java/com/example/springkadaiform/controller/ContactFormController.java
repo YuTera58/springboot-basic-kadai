@@ -34,7 +34,7 @@ public class ContactFormController {
 	 * 　　　　　　　　　 必ず Form ⇒ BindingResult の順で引数を指定する事。
      */
     @PostMapping("/confirm")
-    public String ValidateForm(Model model, RedirectAttributes redirectAttributes,
+    public String ValidateForm(RedirectAttributes redirectAttributes,
             @ModelAttribute @Validated ContactForm form, BindingResult result) {
 
 
@@ -53,8 +53,6 @@ public class ContactFormController {
         // 改行のあるメッセージを表示できるように改行コードを置換する
         String s = form.getMessage();
         form.setMessage(s.replace("\n", "<br>"));
-        // ビューに model を使って入力内容を渡す
-        model.addAttribute("contactForm", form);
         
         //バリデーション OK の場合のビュー
         return "confirmView";
